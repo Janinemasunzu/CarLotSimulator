@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection;
 
 namespace CarLotSimulator
 {
@@ -13,45 +14,52 @@ namespace CarLotSimulator
             //Car shall have the following methods: MakeEngineNoise(), MakeHonkNoise()
             //The methods should take one string parameter: the respective noise property
 
-            CarLot carLot = new CarLot();
+            CarLot myCarlot = new CarLot();
 
             //Now that the Car class is created we can instanciate 3 new cars
             //Set the properties for each of the cars
             //Call each of the methods for each car
 
-            Car car = new Car();
-            car.Make = "Hyundai";
-            car.Model = "Tuscon";
-            car.Year = 2022;
-            car.EngineNoise = "vroom";
-            car.HonkNoise = "beep";
-            car.IsDrivable = true;
+            var BettyCar = new Car();
+            BettyCar.Make = "Hyundai";
+            BettyCar.Make = "Hyundai";
+            BettyCar.Model = "Tuscon";
+            BettyCar.Year = 2022;
+            BettyCar.EngineNoise = "vroom";
+            BettyCar.HonkNoise = "beep";
+            BettyCar.IsDrivable = true;
 
-            CarLot.numberOfCars = 1;
-            Console.WriteLine($"The number of cars in carlot is {CarLot.numberOfCars}");
-            CarLot.numberOfCars++;
-            Console.WriteLine();
             
+            myCarlot.ListOfCars.Add(BettyCar);
 
-            Car car2 = new Car()
+            CarLot.numberOfCars++; 
+            Console.WriteLine($"There are {CarLot.numberOfCars} cars on my carlot");
+            Console.WriteLine();
+
+            var JanineCar = new Car()
             {
                 Make = "Ford",
                 Model = "Bronco",
-                Year = 2022,
+                Year = 2023,
                 EngineNoise = "vruuug",
                 HonkNoise = "beep",
                 IsDrivable = true
+
             };
-            CarLot.numberOfCars = 2;
-            Console.WriteLine($"The number of cars in carlot is {CarLot.numberOfCars}");
+
+            myCarlot.ListOfCars.Add(JanineCar);
+
             CarLot.numberOfCars++;
+            Console.WriteLine($"There are {CarLot.numberOfCars} cars on my carlot");
+            Console.WriteLine();    
+
+            var JesseCar = new Car(2019, "Toyota", "Camry", "vrrrroom", "honk", true);
+
+            myCarlot.ListOfCars.Add(JesseCar);
+
+            CarLot.numberOfCars++;
+            Console.WriteLine($"There are {CarLot.numberOfCars} cars on my carlot");
             Console.WriteLine();
-
-            Car car3 = new Car(2019, "Toyota", "Camry", "vrrrroom", "honk", true);
-            CarLot.numberOfCars=3;
-            Console.WriteLine($"The number of cars in carlot is {CarLot.numberOfCars}");
-            CarLot.numberOfCars++;
-
 
             //*************BONUS*************//
 
@@ -64,8 +72,18 @@ namespace CarLotSimulator
             //Instanciate the a Carlot at the beginning of the program and as you create a car add the car to the list.
             //At the end iterate through the list printing each of car's Year, Make, and Model to the console
 
+            foreach (var item in myCarlot.ListOfCars)
+            {
+                Console.WriteLine(item.Year);
+                Console.WriteLine(item.Make);
+                Console.WriteLine(item.Model);
+                Console.WriteLine(item.IsDrivable);
+                item.MakeEngineNoise(item.EngineNoise);
+                item.MakeHonkNoise(item.HonkNoise);
+                Console.WriteLine();
 
-            
+            }
+
 
         }
 
